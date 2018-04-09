@@ -53,11 +53,13 @@ class Pin {
     })
   }
   static getPins(req, res) {
-    Pins.find({}, {}, {sort: {'created_at' : -1}}, function(err, ps) {
-      if (err) {
-        console.log(err)
-        return res.sendStatus(500)
-      } else return res.status(200).json(ps)
+    Pins.find({}, {}, {sort: {'created_at' : -1}})
+    .populate('user').exec()
+    .then(function(ps) {
+      return res.status(200).json(ps)
+    }).catch(function (err) {
+      console.log(err)
+      return res.sendStatus(500)
     })
   }
 }
