@@ -12,6 +12,7 @@ class User {
       } else return res.status(201).json(d)
     })
   }
+  
   static updateProfile(req, res) {
     Users.update({'twitter.id': req.user.twitter.id},
     {$set: {

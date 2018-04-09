@@ -52,9 +52,9 @@ class Pin {
       return res.sendStatus(500)
     })
   }
+  
   static getPins(req, res) {
-    Pins.find({}, {}, {sort: {'created_at' : -1}})
-    .populate('user').exec()
+    Pins.find().sort({'createdAt': -1}).populate('user').exec()
     .then(function(ps) {
       return res.status(200).json(ps)
     }).catch(function (err) {
@@ -62,11 +62,11 @@ class Pin {
       return res.sendStatus(500)
     })
   }
+
   static getUserPins(req, res) {
     Users.findOne({'twitter.id': req.params.id}).exec()
     .then(function (u) {
-      return Pins.find({user: u._id}, {}, {sort: {'created_at' : -1}})
-      .populate('user').exec()
+      return Pins.find({user: u._id}).sort({'createdAt': -1}).populate('user').exec()
     })
     .then(function(ps) {
       return res.status(200).json(ps)
