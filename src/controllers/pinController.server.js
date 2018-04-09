@@ -25,19 +25,19 @@ class Pin {
     })
   }
 
-  // static getPins(req, res) {
-  //   Users.findOne({'twitter.id': req.user.twitter.id}).exec()
-  //   .then(function (u) {
-  //     return Pins.find({'user': u._id}).exec()
-  //   })
-  //   .then(function (ps) {
-  //     return res.json(ps)
-  //   })
-  //   .catch(function (err) {
-  //     console.log(err)
-  //     return res.sendStatus(500)
-  //   })
-  // }
+  static getMyPins(req, res) {
+    Users.findOne({'twitter.id': req.user.twitter.id}).exec()
+    .then(function (u) {
+      return Pins.find({'user': u._id}).exec()
+    })
+    .then(function (ps) {
+      return res.json(ps)
+    })
+    .catch(function (err) {
+      console.log(err)
+      return res.sendStatus(500)
+    })
+  }
 
   static deletePin(req, res) {
     Users.findOne({'twitter.id': req.user.twitter.id}).exec()
@@ -45,7 +45,7 @@ class Pin {
       return Pins.remove({_id: req.body._id, 'user': u._id}).exec()
     })
     .then(function (p) {
-      return res.sendStatus(200)
+      return res.status(200).json({redirect: '/my-pins'})
     })
     .catch(function (err) {
       console.log(err)

@@ -5,7 +5,7 @@ $(document).ready(function () {
 })
 
 function getNewestPins() {
-  $.get("/api/pins/", function (d) {
+  $.get("/api/my-pins/", function (d) {
     var div = "";
     d.forEach(function (p) {
       div += `
@@ -13,9 +13,25 @@ function getNewestPins() {
           <img id="i-u-${p._id}" src="${p.imgUrl}" onerror="imgError('${p._id}')"/>
           <div id="t-${p._id}">${p.title}</div>
         </a>
+        <button class="btn btn-danger" type="button" onclick="deletePin('${p._id}')">Delete Pin</button>
       `
     });
     $("#c").append(div);
+  })
+}
+
+function deletePin(_id) {
+  $.ajax({
+    type: "DELETE",
+    url: "/api/pins/",
+    data: {_id: _id},
+    dataType: "json",
+    success: function (d) {
+      if (d.redirect) window.location.href = d.redirect;
+    },
+    error: function (e) {
+      console.log(e);
+    }
   })
 }
 
