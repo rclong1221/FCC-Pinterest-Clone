@@ -1,14 +1,14 @@
 {
-  "name": "FCC-Book-Traders-Club",
+  "name": "FCC-Pinterest-Clone",
   "version": "1.0.0",
-  "description": "A book club app",
+  "description": "A pinterest clone app",
   "main": "server.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rclong1221/FCC-Book-Traders-Club"
+    "url": "git+https://github.com/rclong1221/FCC-Pinterest-Clone"
   },
   "homepage": "",
-  "bugs": "https://github.com/rclong1221/FCC-Book-Traders-Clubissues",
+  "bugs": "https://github.com/rclong1221/FCC-Pinterest-Clone/issues",
   "keywords": [],
   "scripts": {
     "start": "node server.js"
