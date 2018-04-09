@@ -2,6 +2,7 @@
 
 const path = process.cwd()
 const User = require(path + '/src/controllers/userController.server.js')
+const Pin = require(path + '/src/controllers/pinController.server.js')
 
 module.exports = function (app, passport) {
 
@@ -51,4 +52,15 @@ module.exports = function (app, passport) {
 			successRedirect: '/',
 			failureRedirect: '/login'
 		}))
+
+	app.route('/add')
+		.get(isLoggedIn, function (req, res) {
+			res.sendFile(path + '/public/add.html')
+		})
+
+	app.route('/api/pins/')
+		.get(Pin.getPins)
+		.post(isLoggedIn, Pin.addPin)
+		.delete(isLoggedIn, Pin.deletePin)
+
 }
