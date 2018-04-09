@@ -17,7 +17,7 @@ class Pin {
       return newPin.save()
     })
     .then(function (u) {
-      return res.status(201).redirect('/')
+      return res.status(201).json({redirect: '/'})
     })
     .catch(function (err) {
       console.log(err)
