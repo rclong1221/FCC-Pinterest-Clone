@@ -11,7 +11,7 @@ class Pin {
       let newPin = new Pins({
         imgUrl: req.body.imgUrl,
         title: req.body.title,
-        pageUrl: req.body.link,
+        pageUrl: req.body.pageUrl,
         user: u._id
       })
       return newPin.save()
@@ -25,19 +25,19 @@ class Pin {
     })
   }
 
-  static getPins(req, res) {
-    Users.findOne({'twitter.id': req.user.twitter.id}).exec()
-    .then(function (u) {
-      return Pins.find({'user': u._id}).exec()
-    })
-    .then(function (ps) {
-      return res.json(ps)
-    })
-    .catch(function (err) {
-      console.log(err)
-      return res.sendStatus(500)
-    })
-  }
+  // static getPins(req, res) {
+  //   Users.findOne({'twitter.id': req.user.twitter.id}).exec()
+  //   .then(function (u) {
+  //     return Pins.find({'user': u._id}).exec()
+  //   })
+  //   .then(function (ps) {
+  //     return res.json(ps)
+  //   })
+  //   .catch(function (err) {
+  //     console.log(err)
+  //     return res.sendStatus(500)
+  //   })
+  // }
 
   static deletePin(req, res) {
     Users.findOne({'twitter.id': req.user.twitter.id}).exec()
@@ -50,6 +50,14 @@ class Pin {
     .catch(function (err) {
       console.log(err)
       return res.sendStatus(500)
+    })
+  }
+  static getPins(req, res) {
+    Pins.find({}, {}, {sort: {'created_at' : -1}}, function(err, ps) {
+      if (err) {
+        console.log(err)
+        return res.sendStatus(500)
+      } else return res.status(200).json(ps)
     })
   }
 }
