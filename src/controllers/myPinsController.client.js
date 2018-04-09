@@ -36,6 +36,6 @@ function deletePin(_id) {
 }
 
 function imgError(id) {
-  $(`#i-u-${id}`).attr("src", "https://picsum.photos/200/300");
+  $(`#i-u-${id}`).attr("src", "https://picsum.photos/200/300/?random");
   $(`#t-${id}`).prepend("(img broken) ");
 }

@@ -62,6 +62,20 @@ class Pin {
       return res.sendStatus(500)
     })
   }
+  static getUserPins(req, res) {
+    Users.findOne({'twitter.id': req.params.id}).exec()
+    .then(function (u) {
+      return Pins.find({user: u._id}, {}, {sort: {'created_at' : -1}})
+      .populate('user').exec()
+    })
+    .then(function(ps) {
+      return res.status(200).json(ps)
+    }).catch(function (err) {
+      console.log(err)
+      return res.sendStatus(500)
+    })
+  }
+
 }
 
 module.exports = Pin

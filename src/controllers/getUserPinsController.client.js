@@ -5,7 +5,9 @@ $(document).ready(function () {
 })
 
 function getNewestPins() {
-  $.get("/api/pins/", function (d) {
+  var x = window.location.pathname.split("/");
+  x = x[x.length - 1];
+  $.get(`/api/user/${x}/pins/`, function (d) {
     var div = "";
     d.forEach(function (p) {
       div += `
@@ -21,6 +23,6 @@ function getNewestPins() {
 }
 
 function imgError(id) {
-  $(`#i-u-${id}`).attr("src", "https://picsum.photos/200/300/?random");
+  $(`#i-u-${id}`).attr("src", "https://picsum.photos/240/400/?random");
   $(`#t-${id}`).prepend("(img broken) ");
 }

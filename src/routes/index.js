@@ -58,7 +58,7 @@ module.exports = function (app, passport) {
 			res.sendFile(path + '/public/add.html')
 		})
 
-	app.route('/api/pins/')
+	app.route('/api/pins')
 		.get(Pin.getPins)
 		.post(isLoggedIn, Pin.addPin)
 		.delete(isLoggedIn, Pin.deletePin)
@@ -70,4 +70,13 @@ module.exports = function (app, passport) {
 
 	app.route('/api/my-pins')
 		.get(isLoggedIn, Pin.getMyPins)
+
+	app.route('/user/:id')
+		.get(function(req, res) {
+			res.sendFile(path + '/public/user.html')
+		})
+
+	app.route('/api/user/:id/pins')
+		.get(Pin.getUserPins)
+
 }
