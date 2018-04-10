@@ -9,14 +9,30 @@ function getNewestPins() {
     var div = "";
     d.forEach(function (p) {
       div += `
-        <a href="${p.pageUrl}" target="_blank">
-          <img id="i-u-${p._id}" src="${p.imgUrl}" onerror="imgError('${p._id}')"/>
-          <div id="t-${p._id}">${p.title}</div>
-        </a>
-        <button class="btn btn-danger" type="button" onclick="deletePin('${p._id}')">Delete Pin</button>
+      <div class="grid-item border main-border-color rounded px-1 py-1">
+      <a href="${p.pageUrl}" target="_blank">
+        <img id="i-u-${p._id}" src="${p.imgUrl}" onerror="imgError('${p._id}')"/>
+        <div id="t-${p._id}">${p.title}</div>
+      </a>
+      <button class="btn btn-danger" type="button" onclick="deletePin('${p._id}')">Delete Pin</button>
+      </div>
       `
     });
     $("#c").append(div);
+    // init Masonry
+    var $grid = $('.grid').masonry({
+      columnWidth: 80,
+      gutter: 1,
+      itemSelector: '.grid-item',
+      // percentPosition: true,
+      horizontalOrder: true,
+      fitWidth: true,
+      transitionDuration: '0.8s'
+    });
+    // layout Masonry after each image loads
+    $grid.imagesLoaded().progress( function() {
+      $grid.masonry('layout');
+    });
   })
 }
 
@@ -36,6 +52,6 @@ function deletePin(_id) {
 }
 
 function imgError(id) {
-  $(`#i-u-${id}`).attr("src", "https://picsum.photos/200/300/?random");
+  $(`#i-u-${id}`).attr("src", "https://picsum.photos/768/1366/?random");
   $(`#t-${id}`).prepend("(img broken) ");
 }
