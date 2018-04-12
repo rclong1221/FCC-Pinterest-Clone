@@ -3,6 +3,7 @@
 const path = process.cwd()
 const User = require(path + '/src/controllers/userController.server.js')
 const Pin = require(path + '/src/controllers/pinController.server.js')
+const Like = require(path + '/src/controllers/likeController.server.js')
 
 module.exports = function (app, passport) {
 
@@ -79,4 +80,6 @@ module.exports = function (app, passport) {
 	app.route('/api/user/:id/pins')
 		.get(Pin.getUserPins)
 
+	app.route('/api/likes')
+		.post(isLoggedIn, Like.addOrModifyLike)
 }

@@ -11,13 +11,15 @@ function getNewestPins() {
     var div = "";
     d.forEach(function (p) {
       div += `
-      <div class="grid-item border main-border-color rounded px-1 py-1">
-      <a href="${p.pageUrl}" target="_blank">
-        <img id="i-u-${p._id}" src="${p.imgUrl}" onerror="imgError('${p._id}')"/>
-        <div id="t-${p._id}">${p.title}</div>
-        <a id="u-${p._id}" href="/user/${p.user.twitter.id}">${p.user.twitter.displayName}</a>
-      </a>
-      </div>
+        <div class="grid-item border main-border-color rounded px-1 py-1">
+        <a href="${p.pageUrl}" target="_blank">
+          <img id="i-u-${p._id}" src="${p.imgUrl}" onerror="imgError('${p._id}')"/>
+          <div id="t-${p._id}">${p.title}</div>
+          <a class="username-text" id="u-${p._id}" href="/user/${p.user.twitter.id}">${p.user.twitter.displayName}</a>
+          <button class="btn btn-primary" id="l-${p._id}" onclick="likePin('${p._id}')">Like</button>
+          <button class="btn btn-secondary" id="s-${p._id}" onclick="sharePin('${p._id}')">Share</button>
+        </a>
+        </div>
       `
     });
     $("#c").append(div);
@@ -41,4 +43,19 @@ function getNewestPins() {
 function imgError(id) {
   $(`#i-u-${id}`).attr("src", "https://picsum.photos/768/1366/?random");
   $(`#t-${id}`).prepend("(img broken) ");
+}
+
+function likePin(id) {
+  $.ajax({
+    type: "POST",
+    url: "/api/likes/",
+    data: {pid: id},
+    dataType: "json",
+    success: function (d) {
+      console.log(d);
+    },
+    failure: function (e) {
+      console.log(e);
+    }
+  })
 }
