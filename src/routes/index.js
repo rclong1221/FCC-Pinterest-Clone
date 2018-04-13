@@ -15,14 +15,18 @@ module.exports = function (app, passport) {
 		}
 	}
 
+	function loggedIn (req) {
+		return (req.isAuthenticated()) ? true : false
+	}
+
 	app.route('/')
 		.get(function (req, res) {
-			res.render('index')
+			res.render('index', {loggedIn: loggedIn(req)})
 		})
 
 	app.route('/login')
 		.get(function (req, res) {
-			res.render('login')
+			res.render('login', {loggedIn: loggedIn(req)})
 		})
 
 	app.route('/logout')
@@ -33,7 +37,7 @@ module.exports = function (app, passport) {
 
 	app.route('/profile')
 		.get(isLoggedIn, function (req, res) {
-			res.render('profile')
+			res.render('profile', {loggedIn: loggedIn(req)})
 		})
 
 	app.route('/api/user/:id')
@@ -56,7 +60,7 @@ module.exports = function (app, passport) {
 
 	app.route('/add')
 		.get(isLoggedIn, function (req, res) {
-			res.render('add')
+			res.render('add', {loggedIn: loggedIn(req)})
 		})
 
 	app.route('/api/pins')
@@ -66,7 +70,7 @@ module.exports = function (app, passport) {
 
 	app.route('/my-pins')
 		.get(isLoggedIn, function(req, res) {
-			res.render('my-pins')
+			res.render('my-pins', {loggedIn: loggedIn(req)})
 		})
 
 	app.route('/api/my-pins')
@@ -74,7 +78,7 @@ module.exports = function (app, passport) {
 
 	app.route('/user/:id')
 		.get(function(req, res) {
-			res.render('user')
+			res.render('user', {loggedIn: loggedIn(req)})
 		})
 
 	app.route('/api/user/:id/pins')
