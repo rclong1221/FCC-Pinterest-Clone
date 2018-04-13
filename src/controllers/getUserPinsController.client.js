@@ -1,6 +1,10 @@
 'use strict'
+var isLoggedIn = false;
 
 $(document).ready(function () {
+  $.get("/api/user/:id", function (d, s) {
+    if (d.id) isLoggedIn = true;
+  })
   getNewestPins()
 })
 
@@ -48,24 +52,26 @@ function imgError(id) {
 }
 
 function likePin(id) {
-  $(`#l-${id}`).attr("disabled", "disabled");
-  $.ajax({
-    type: "POST",
-    url: "/api/likes/",
-    data: {pid: id},
-    dataType: "json",
-    success: function (d) {
-      if ($(`#l-${id}`).hasClass("liked")) {
-        $(`#l-${id}`).removeClass("liked");
+  if (isLoggedIn) {
+    $(`#l-${id}`).attr("disabled", "disabled");
+    $.ajax({
+      type: "POST",
+      url: "/api/likes/",
+      data: {pid: id},
+      dataType: "json",
+      success: function (d) {
+        if ($(`#l-${id}`).hasClass("liked")) {
+          $(`#l-${id}`).removeClass("liked");
+        }
+        else {
+          $(`#l-${id}`).addClass("liked");
+        }
+        $(`#l-${id}`).removeAttr("disabled");
+      },
+      failure: function (e) {
+        console.log(e);
+        $(`l-${id}`).removeAttr("disabled");
       }
-      else {
-        $(`#l-${id}`).addClass("liked");
-      }
-      $(`#l-${id}`).removeAttr("disabled");
-    },
-    failure: function (e) {
-      console.log(e);
-      $(`l-${id}`).removeAttr("disabled");
-    }
-  })
+    })
+  }
 }
