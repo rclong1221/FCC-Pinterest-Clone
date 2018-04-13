@@ -9,7 +9,16 @@ $(document).ready(function () {
 })
 
 function getNewestPins() {
-  $.get("/api/pins/", function (d) {
+  var url;
+  if (window.location.pathname === "/") {
+    url = "/api/pins/";
+  }
+  else {
+    var x = window.location.pathname.split("/");
+    x = x[x.length - 1];
+    url = `/api/user/${x}/pins/`;
+  }
+  $.get(url, function (d) {
     var div = "";
     d.forEach(function (p) {
       var likedClass = ""
