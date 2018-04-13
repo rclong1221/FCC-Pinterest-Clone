@@ -55,29 +55,9 @@ input:focus:-moz-placeholder {
   padding: 10px 8px;
 }
 
-.oauth-btn:hover {
-}
-
-/*.first-color {
-  color: #2ECC71;
-}*/
-
 .selected {
   color: red !important;
 }
-
-* { box-sizing: border-box; }
-
-body { font-family: sans-serif; }
-
-/* ---- grid ---- */
-
-* { box-sizing: border-box; }
-
-/* force scrollbar */
-html { overflow-y: scroll; }
-
-body { font-family: sans-serif; }
 
 /* ---- grid ---- */
 
@@ -97,7 +77,7 @@ body { font-family: sans-serif; }
 
 .grid-sizer,
 .grid-item {
-  width: 25%;
+  /*width: 25%;*/
   background-color: #fff;
 }
 
@@ -110,4 +90,25 @@ body { font-family: sans-serif; }
   display: block;
   min-width: 100%;
   max-width: 100%;
+}
+
+@media only screen and (max-width: 480px) {
+  .grid-sizer,
+  .grid-item {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 960px) and (min-width: 481px) {
+  .grid-sizer,
+  .grid-item {
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 961px) {
+  .grid-sizer,
+  .grid-item {
+    width: 25%;
+  }
 }
