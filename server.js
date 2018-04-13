@@ -19,8 +19,8 @@ mongoose.Promise = global.Promise
 // View engine
 app.engine('handlebars', handlebars({
 	extname: 'handlebars',
-	// defaultLayout: 'layout',
-	// layoutsDir: __dirname + '/src/views/layouts'
+	defaultLayout: 'layout',
+	layoutsDir: __dirname + '/src/views/layouts'
 }))
 app.set('views', path.join(__dirname, 'src/views'))
 app.set('view engine', 'handlebars')

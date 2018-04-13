@@ -17,23 +17,23 @@ module.exports = function (app, passport) {
 
 	app.route('/')
 		.get(function (req, res) {
-			res.sendFile(path + '/public/index.html')
+			res.render('index')
 		})
 
 	app.route('/login')
 		.get(function (req, res) {
-			res.sendFile(path + '/public/login.html')
+			res.render('login')
 		})
 
 	app.route('/logout')
 		.get(function (req, res) {
 			req.logout()
-			res.redirect('/login')
+			res.redirect('/')
 		})
 
 	app.route('/profile')
 		.get(isLoggedIn, function (req, res) {
-			res.sendFile(path + '/public/profile.html')
+			res.render('profile')
 		})
 
 	app.route('/api/user/:id')
@@ -56,7 +56,7 @@ module.exports = function (app, passport) {
 
 	app.route('/add')
 		.get(isLoggedIn, function (req, res) {
-			res.sendFile(path + '/public/add.html')
+			res.render('add')
 		})
 
 	app.route('/api/pins')
@@ -66,7 +66,7 @@ module.exports = function (app, passport) {
 
 	app.route('/my-pins')
 		.get(isLoggedIn, function(req, res) {
-			res.sendFile(path + '/public/my-pins.html')
+			res.render('my-pins')
 		})
 
 	app.route('/api/my-pins')
@@ -74,7 +74,7 @@ module.exports = function (app, passport) {
 
 	app.route('/user/:id')
 		.get(function(req, res) {
-			res.sendFile(path + '/public/user.html')
+			res.render('user')
 		})
 
 	app.route('/api/user/:id/pins')
