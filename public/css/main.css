@@ -54,25 +54,9 @@ input:focus:-moz-placeholder {
 .oauth-btn:hover {
 }
 
-.business-img {
-  max-width: 100%;
-}
-
-.going-btn {
-  /*height: 100%;*/
-}
-
 /*.first-color {
   color: #2ECC71;
 }*/
-
-/*#s-i, #s-b {
-  box-shadow: 0px 1px 5px 0px #7d7d7d;
-}*/
-
-.bus-container {
-  border-color: #2ECC71 !important;
-}
 
 .selected {
   color: red !important;
@@ -110,6 +94,7 @@ body { font-family: sans-serif; }
 .grid-sizer,
 .grid-item {
   width: 25%;
+  background-color: #fff;
 }
 
 .grid-item {

@@ -22,15 +22,27 @@ function getNewestPins() {
     var div = "";
     d.forEach(function (p) {
       var likedClass = ""
-      if (p.userLike) likedClass = (p.userLike.status) ? " liked" : "";
+      if (p.userLike) likedClass = (p.userLike.status) ? " btn-primary" : " btn-outline-primary";
       div += `
         <div class="grid-item border main-border-color rounded px-1 py-1">
-        <a href="${p.pageUrl}" target="_blank">
-          <img id="i-u-${p._id}" src="${p.imgUrl}" onerror="imgError('${p._id}')"/>
-          <div id="t-${p._id}">${p.title}</div>
-          <a class="username-text" id="u-${p._id}" href="/user/${p.user.twitter.id}">${p.user.twitter.displayName}</a>
-          <button class="btn btn-primary${likedClass}" id="l-${p._id}" onclick="likePin('${p._id}')">Like</button>
-        </a>
+          <a href="${p.pageUrl}" target="_blank">
+            <img id="i-u-${p._id}" src="${p.imgUrl}" onerror="imgError('${p._id}')"/>
+          </a>
+          <div class="row mt-1">
+            <div class="col-12 col-sm-12 col-md-8 px-0">
+              <div class="col-12" id="t-${p._id}">${p.title}</div>
+              <div class="col-12">
+                <a class="username-text" id="u-${p._id}" href="/user/${p.user.twitter.id}">
+                  ${p.user.twitter.displayName}
+                </a>
+              </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-4 px-0">
+              <div class="col-12">
+                <button class="btn btn-block mt-1 like-btn${likedClass}" id="l-${p._id}" onclick="likePin('${p._id}')"><i class="fas fa-thumbs-up"></i> Like</button>
+              </div>
+            </div>
+          </div>
         </div>
       `
     });
@@ -55,11 +67,13 @@ function likePin(id) {
       data: {pid: id},
       dataType: "json",
       success: function (d) {
-        if ($(`#l-${id}`).hasClass("liked")) {
-          $(`#l-${id}`).removeClass("liked");
+        if ($(`#l-${id}`).hasClass("btn-primary")) {
+          $(`#l-${id}`).removeClass("btn-primary");
+          $(`#l-${id}`).addClass("btn-outline-primary");
         }
         else {
-          $(`#l-${id}`).addClass("liked");
+          $(`#l-${id}`).addClass("btn-primary");
+          $(`#l-${id}`).removeClass("btn-outline-primary");
         }
         $(`#l-${id}`).removeAttr("disabled");
       },
