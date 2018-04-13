@@ -4,6 +4,7 @@ const path = process.cwd()
 const Users = require(path + '/src/models/users.js').User
 const Pins = require(path + '/src/models/pins.js')
 const Likes = require(path + '/src/models/likes.js')
+const escape = require('escape-html');
 
 class Pin {
   static addPin(req, res) {
@@ -11,7 +12,7 @@ class Pin {
     .then(function (u) {
       let newPin = new Pins({
         imgUrl: req.body.imgUrl,
-        title: req.body.title,
+        title: escape(req.body.title),
         pageUrl: req.body.pageUrl,
         user: u._id
       })
