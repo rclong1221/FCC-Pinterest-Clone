@@ -7,7 +7,7 @@ function initMasonry() {
     // percentPosition: true,
     horizontalOrder: true,
     fitWidth: true,
-    transitionDuration: '0.8s'
+    transitionDuration: '0.5s'
   });
   // layout Masonry after each image loads
   $grid.imagesLoaded().progress( function() {

@@ -10,11 +10,19 @@ function getNewestPins() {
     d.forEach(function (p) {
       div += `
       <div class="grid-item border main-border-color rounded px-1 py-1">
-      <a href="${p.pageUrl}" target="_blank">
-        <img id="i-u-${p._id}" src="${p.imgUrl}" onerror="imgError('${p._id}')"/>
-        <div id="t-${p._id}">${p.title}</div>
-      </a>
-      <button class="btn btn-danger" type="button" onclick="deletePin('${p._id}')">Delete Pin</button>
+        <a href="${p.pageUrl}" target="_blank">
+          <img id="i-u-${p._id}" src="${p.imgUrl}" onerror="imgError('${p._id}')"/>
+        </a>
+        <div class="row mt-1">
+          <div class="col-12 col-sm-12 col-md-8 px-0">
+            <div class="col-12" id="t-${p._id}">${p.title}</div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-4 px-0">
+            <div class="col-12">
+              <button class="btn btn-danger float-right" type="button" onclick="deletePin('${p._id}')">Delete</button>
+            </div>
+          </div>
+        </div>
       </div>
       `
     });

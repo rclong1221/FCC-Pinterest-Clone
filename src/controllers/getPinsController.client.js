@@ -39,7 +39,7 @@ function getNewestPins() {
             </div>
             <div class="col-12 col-sm-12 col-md-4 px-0">
               <div class="col-12">
-                <button class="btn btn-block mt-1 like-btn${likedClass}" id="l-${p._id}" onclick="likePin('${p._id}')"><i class="fas fa-thumbs-up"></i> Like</button>
+                <button class="btn mt-1 float-right like-btn${likedClass}" id="l-${p._id}" onclick="likePin('${p._id}')"><i class="fas fa-thumbs-up"></i> Like</button>
               </div>
             </div>
           </div>
