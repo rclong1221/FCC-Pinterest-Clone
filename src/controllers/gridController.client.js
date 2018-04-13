@@ -1,17 +1,16 @@
-$(document).ready(function () {
-  // // external js: masonry.pkgd.js, imagesloaded.pkgd.js
-  //
-  // // init Masonry
-  // var grid = document.querySelector('.grid');
-  //
-  // var msnry = new Masonry( grid, {
-  //   itemSelector: '.grid-item',
-  //   columnWidth: '.grid-sizer',
-  //   percentPosition: true
-  // });
-  //
-  // imagesLoaded( grid ).on( 'progress', function() {
-  //   // layout Masonry after each image loads
-  //   msnry.layout();
-  // });
-});
+function initMasonry() {
+  // init Masonry
+  var $grid = $('.grid').masonry({
+    columnWidth: 80,
+    gutter: 1,
+    itemSelector: '.grid-item',
+    // percentPosition: true,
+    horizontalOrder: true,
+    fitWidth: true,
+    transitionDuration: '0.8s'
+  });
+  // layout Masonry after each image loads
+  $grid.imagesLoaded().progress( function() {
+    $grid.masonry('layout');
+  });
+}
