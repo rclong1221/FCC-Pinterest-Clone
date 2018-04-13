@@ -111,15 +111,3 @@ body { font-family: sans-serif; }
   min-width: 100%;
   max-width: 100%;
 }
-
-.main-color {
-  color: #7D3C98 !important;
-}
-
-.main-background-color {
-  background-color: #7D3C98 !important;
-}
-
-.main-border-color {
-  border-color: #7D3C98 !important;
-}

@@ -9,7 +9,7 @@ function getNewestPins() {
     var div = "";
     d.forEach(function (p) {
       div += `
-      <div class="grid-item border main-border-color rounded px-1 py-1">
+      <div class="grid-item border border-primary rounded px-1 py-1">
         <a href="${p.pageUrl}" target="_blank">
           <img id="i-u-${p._id}" src="${p.imgUrl}" onerror="imgError('${p._id}')"/>
         </a>
