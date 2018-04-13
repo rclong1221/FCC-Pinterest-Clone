@@ -21,7 +21,7 @@ function getNewestPins() {
   $.get(url, function (d) {
     var div = "";
     d.forEach(function (p) {
-      var likedClass = ""
+      var likedClass = (isLoggedIn) ? " btn-outline-primary" : ""
       if (p.userLike) likedClass = (p.userLike.status) ? " btn-primary" : " btn-outline-primary";
       div += `
         <div class="grid-item border border-primary rounded px-1 py-1">
