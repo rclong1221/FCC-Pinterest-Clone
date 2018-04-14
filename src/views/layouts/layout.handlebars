@@ -20,6 +20,7 @@
       </button>
       <div class="collapse navbar-collapse pr-1 pr-sm-2 pr-md-5" id="navbarSupportedContent">
         <ul class="ml-auto navbar-nav">
+          {{#if loggedIn}}
           <li class="nav-item">
             <a class="nav-link first-color" href="/add"><i class="fas fa-plus"></i></a>
           </li>
@@ -29,11 +30,15 @@
           <li class="nav-item">
             <a class="nav-link first-color" href="/profile">Profile</a>
           </li>
+          {{/if}}
           <li class="nav-item">
             {{#if loggedIn}}
-              <a class="nav-link first-color" href="/logout" id="lio">Logout</a>
+              <a class="nav-link" href="/logout" id="lio">Logout</a>
             {{else}}
-              <a class="nav-link first-color" href="/login" id="lio">Login</a>
+              <a class="nav-link" href="/auth/twitter" id="lio">
+                <i class="fab fa-twitter"></i>
+                  Login
+              </a>
             {{/if}}
           </li>
         </ul>

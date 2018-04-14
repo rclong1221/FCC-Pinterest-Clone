@@ -26,7 +26,7 @@ module.exports = function (app, passport) {
 
 	app.route('/login')
 		.get(function (req, res) {
-			res.render('login', {loggedIn: loggedIn(req)})
+			res.redirect('/auth/twitter')
 		})
 
 	app.route('/logout')
