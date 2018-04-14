@@ -48,7 +48,6 @@ function getNewestPins() {
     });
     // <button class="btn btn-secondary" id="s-${p._id}" onclick="sharePin('${p._id}')">Share</button>
     $("#c").append(div);
-
     initMasonry();
   })
 }
