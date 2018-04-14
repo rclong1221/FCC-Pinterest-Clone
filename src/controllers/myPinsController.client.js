@@ -19,7 +19,7 @@ function getNewestPins() {
           </div>
           <div class="col-12 col-sm-12 col-md-4 px-0">
             <div class="col-12">
-              <button class="btn btn-danger float-right" type="button" onclick="deletePin('${p._id}')">Delete</button>
+              <button class="btn btn-danger float-right" type="button" onclick="deletePin('${p._id}')"><i class="far fa-trash-alt"></i></button>
             </div>
           </div>
         </div>
