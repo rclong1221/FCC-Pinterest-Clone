@@ -2,7 +2,7 @@ function initMasonry() {
   // init Masonry
   var $grid = $('.grid').masonry({
     columnWidth: '.grid-sizer',
-    gutter: 5,
+    gutter: 0,
     itemSelector: '.grid-item',
     percentPosition: true,
     horizontalOrder: true,
