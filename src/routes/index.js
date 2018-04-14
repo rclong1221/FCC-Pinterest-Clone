@@ -54,7 +54,7 @@ module.exports = function (app, passport) {
 
 	app.route('/auth/twitter/callback')
 		.get(passport.authenticate('twitter', {
-			successRedirect: '/',
+			successRedirect: '/redirect',
 			failureRedirect: '/login'
 		}))
 
@@ -86,4 +86,9 @@ module.exports = function (app, passport) {
 
 	app.route('/api/likes')
 		.post(isLoggedIn, Like.addOrModifyLike)
+
+	app.route('/redirect')
+		.get(function (req, res) {
+			res.render('redirect', {loggedIn: loggedIn(req)})
+		})
 }
