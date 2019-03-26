@@ -2,7 +2,7 @@
 
 ## Installation
 
-git clone https://github.com/rclong1221/FCC-Pinterest-Clone.git  
+git clone https://github.com/rclong1221/pinstergram.git  
 cd "FCC-Pinterest-Clone"  
 npm install  
 
