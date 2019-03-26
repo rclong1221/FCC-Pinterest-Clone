@@ -1,7 +1,5 @@
 # Pinstergram
 
-https://clumsy-apple.glitch.me/  
-
 ## Installation
 
 git clone https://github.com/rclong1221/FCC-Pinterest-Clone.git  
